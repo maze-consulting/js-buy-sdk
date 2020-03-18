@@ -1,6 +1,17 @@
-query ($handle: String!) {
+query ($handle: String!, $productsFirst: Int!) {
   collectionByHandle(handle: $handle) {
     ...CollectionFragment
-    ...CollectionsProductsFragment
+    products(first: $productsFirst) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        cursor
+        node {
+          ...ProductFragment
+        }
+      }
+    }
   }
 }

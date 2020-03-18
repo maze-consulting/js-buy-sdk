@@ -96,10 +96,11 @@ class CollectionResource extends Resource {
    * @param {String} handle The handle of the collection to fetch.
    * @return {Promise|GraphModel} A promise resolving with a `GraphModel` of the collection.
    */
-  fetchByHandle(handle) {
+  fetchByHandle(handle, {productsFirst = 20} = {}) {
     return this.graphQLClient
-      .send(collectionByHandleQuery, {handle})
-      .then(defaultResolver('collectionByHandle'));
+      .send(collectionByHandleQuery, {handle, productsFirst})
+      .then(defaultResolver('collectionByHandle'))
+      .then(paginateCollectionsProductConnectionsAndResolve(this.graphQLClient));
   }
 
   /**
