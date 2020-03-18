@@ -17,6 +17,10 @@ fragment VariantFragment on ProductVariant {
           amount
           currencyCode
         }
+        compareAtPrice {
+          amount
+          currencyCode
+        }
       }
     }
   }
@@ -36,5 +40,16 @@ fragment VariantFragment on ProductVariant {
   selectedOptions {
     name
     value
+  }
+  unitPrice {
+    amount
+    currencyCode
+  }
+  unitPriceMeasurement {
+    measuredType
+    quantityUnit
+    quantityValue
+    referenceUnit
+    referenceValue
   }
 }
